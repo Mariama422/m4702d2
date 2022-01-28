@@ -1,0 +1,50 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello ServeurController!{% endblock %}
+
+{% block body %}
+<style>
+    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
+    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+</style>
+
+<form method="post" action="traitement.php">
+
+
+  <form>
+  <div class="form-group"> 
+
+        <label for="pseudo">Votre nom :</label>
+        <input type="text" name="pseudo" id="pseudo" placeholder="Ex : TOURE" size="30" maxlength="10" />
+  
+    <div class="form-group">
+        <label for="pseudo">Votre prenom:</label>
+        <input type="text" name="pseudo" id="pseudo" placeholder="Ex : mariama" size="30" maxlength="10" />
+    </div>
+
+
+   <div class="form-group">
+       <label for="pseudo">Votre adresse :</label>
+       <input type="text" name="pseudo" id="pseudo" />
+       
+    </div>
+
+    <div class="form-group">
+    <label for="exampleInputEmail1">Email address</label>
+    </div>
+
+
+     <div class="form-group">
+
+        vous nous contactez pour  :
+    </div>
+
+           <input type="radio" name="souhait" value="riche" id="riche" /> <label for="riche">Joindre le service client</label>
+           <input type="radio" name="souhait" value="celebre" id="celebre" /> <label for="celebre">Pour participer à l'association</label>
+           
+ </p>
+
+<input type="submit" /// value="Envoyer" />
+
+
+{% endblock %}
