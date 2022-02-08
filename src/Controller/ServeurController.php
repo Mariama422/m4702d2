@@ -5,6 +5,10 @@ namespace App\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\HttpFoundation\Request;
+use Doctrine\ORM\EntityManagerInterface;
+use App\Entity\NomClasseTable;
+
 
 class ServeurController extends AbstractController
 {
@@ -18,8 +22,6 @@ class ServeurController extends AbstractController
         ]);
     }
 
-
-    
         /**
          * @Route("/formulaire", name="formulaire")
          */
@@ -30,15 +32,33 @@ class ServeurController extends AbstractController
             ]);
         }
     
-
- /**
-         * @Route("/docs", name="docs")
+        /**
+         * @Route("/traitement", name="traitement")
          */
-        public function docs(): Response
+        public function traitement(request $request): Response
+            {
+            $login=$request->request-> get("pseudo");
+            $password=$request -> request -> get("password");
+
+           
+            if (( $login == "root") && ($password == "toor"))
+
         {
-            return $this->render('serveur/docs.html.twig', [
+            $text = "valide";
+        }
+
+        else {
+            $text = "erreur";
+        }
+
+            return $this->render('serveur/traitement.html.twig', [
                 'controller_name' => 'ServeurController',
+                'login' => $login,
+                'password' => $password,
+                'text' => $text,
             ]);
         }
 
-}
+
+    }
+
