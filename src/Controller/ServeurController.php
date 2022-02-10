@@ -7,7 +7,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Request;
 use Doctrine\ORM\EntityManagerInterface;
-use App\Entity\NomClasseTable;
+use App\Entity\Utilisateur;
 
 
 class ServeurController extends AbstractController
@@ -41,7 +41,7 @@ class ServeurController extends AbstractController
             $password=$request -> request -> get("password");
 
            
-            if (( $login == "root") && ($password == "toor"))
+        /* if (( $login == "root") && ($password == "toor"))
 
         {
             $text = "valide";
@@ -51,7 +51,30 @@ class ServeurController extends AbstractController
             $text = "erreur";
         }
 
-            return $this->render('serveur/traitement.html.twig', [
+        */
+        $reponse = $manager ->getRepository (Utilisateur::class) -> findOneBy(['login' => $login]); 
+        
+        if($reponse == NULL)
+        {
+
+            $valide="user n'existe pas";
+        }
+
+        else
+        { 
+            $password-$reponse -> getPassword(); 
+        
+            if($password==$password)
+            
+            { 
+                $valide="valide";
+            }else
+            
+            {
+                $valide="password pas correct";
+            }
+            return $this->render('serveur/traitement.html.twig',
+             [
                 'controller_name' => 'ServeurController',
                 'login' => $login,
                 'password' => $password,
@@ -59,6 +82,5 @@ class ServeurController extends AbstractController
             ]);
         }
 
-
     }
-
+}
