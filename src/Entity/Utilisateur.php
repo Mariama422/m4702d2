@@ -22,12 +22,12 @@ class Utilisateur
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $Login;
+    private $login;
 
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $Password;
+    private $password;
 
     /**
      * @ORM\OneToMany(targetEntity=Acces::class, mappedBy="util")
@@ -46,24 +46,24 @@ class Utilisateur
 
     public function getLogin(): ?string
     {
-        return $this->Login;
+        return $this->login;
     }
 
-    public function setLogin(string $Login): self
+    public function setLogin(string $login): self
     {
-        $this->Login = $Login;
+        $this->login = $login;
 
         return $this;
     }
 
     public function getPassword(): ?string
     {
-        return $this->Password;
+        return $this->password;
     }
 
-    public function setPassword(string $Password): self
+    public function setPassword(string $password): self
     {
-        $this->Password = $Password;
+        $this->password = $password;
 
         return $this;
     }

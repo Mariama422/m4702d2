@@ -8,6 +8,7 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Request;
 use Doctrine\ORM\EntityManagerInterface;
 use App\Entity\Utilisateur;
+use Doctrine\Persistence\ManagerRegistry;
 
 
 class ServeurController extends AbstractController
@@ -35,23 +36,13 @@ class ServeurController extends AbstractController
         /**
          * @Route("/traitement", name="traitement")
          */
-        public function traitement(request $request): Response
+        public function traitement(request $request,ManagerRegistry $manager ): Response
             {
             $login=$request->request-> get("pseudo");
             $password=$request -> request -> get("password");
-
+            }
            
-        /* if (( $login == "root") && ($password == "toor"))
-
-        {
-            $text = "valide";
-        }
-
-        else {
-            $text = "erreur";
-        }
-
-        */
+       
         $reponse = $manager ->getRepository (Utilisateur::class) -> findOneBy(['login' => $login]); 
         
         if($reponse == NULL)
@@ -73,6 +64,7 @@ class ServeurController extends AbstractController
             {
                 $valide="password pas correct";
             }
+        }
             return $this->render('serveur/traitement.html.twig',
              [
                 'controller_name' => 'ServeurController',
@@ -83,4 +75,3 @@ class ServeurController extends AbstractController
         }
 
     }
-}
